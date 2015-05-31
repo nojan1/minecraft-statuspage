@@ -41,15 +41,21 @@ angular.module('minecraftNew').factory('Servers', function($http, $q, $interval)
 						}
 						
 						
-						var newPlayers = [];
-						server.players.forEach(function(player){
-							if(serverCache[serverIndex].players.indexOf(player) === -1){
-								newPlayers.push(player);	
+						if(server.query && server.query.players){
+							var newPlayers = [];
+							server.query.players.forEach(function(player){
+								if(!serverCache[serverIndex].query || !serverCache[serverIndex].query.players){
+									return;	
+								}
+								
+								if(serverCache[serverIndex].query.players.indexOf(player) === -1){
+									newPlayers.push(player);	
+								}
+							});
+
+							if(newPlayers.length > 0){
+								callback(newPlayers.join(',') + ' joined ' + server.servername);	
 							}
-						});
-						
-						if(newPlayers.length > 0){
-							callback(newPlayers.join(',') + ' joined ' + server.servername);	
 						}
 					});
 				}
