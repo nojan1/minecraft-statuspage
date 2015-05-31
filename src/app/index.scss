@@ -1,0 +1,67 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#serverlist{
+	list-style:none;
+	padding:0;
+}
+
+.loading {
+	text-align:center;
+}
+
+.loading img {
+	width:400px;
+	margin:0 auto 0 auto;
+}
+
+.serverrow,
+.footer {
+	 margin-right: 15px;
+	 margin-left: 15px;
+}
+
+.footer {
+	margin-top: 20px;
+	padding-top: 19px;
+	color: #777;
+	border-top: 1px solid #e5e5e5;
+}
+
+.serveronline {
+	border-color:green;
+}
+
+.serveroffline {
+	border-color:red;
+	color:white;
+	background-image:url(../assets/images/offline.png);
+	background-size: 100% 100%;
+}
+
+.modlink {
+    color: black;
+    text-decoration:underline;
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+
+  img.pull-right {
+    width: 50px;
+  }
+}
+
+/* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+   all your sass files automatically */
+// injector
+// endinjector

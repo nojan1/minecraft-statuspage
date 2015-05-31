@@ -1,0 +1,74 @@
+<div class="container">
+<div class="jumbotron">
+	<h1>Welcome to nyclon server!</h1>
+	<p class="lead">The servers listed below are currently part of the nyclon minecraft server cluster!. Click on one of them to get more information</p>
+</div>
+
+<div ng-hide="servers" class="loading">
+	<img src="assets/images/spinner.gif" />
+</div>
+
+<ul id="serverlist">
+	<li ng-repeat="server in servers">
+		<div class="serverrow well {{server.isOnline | isonlinestyle}}">
+			<div class="media">
+				<div class="pull-left media-object thumbnail" style="width:160px; height:160px;line-height:150px;position:relative;padding:10px;"> 
+					<img ng-src="{{server.imagelist | firstserverimage}}" style="position:absolute; top:0;right:0;left:0;bottom:0;margin:auto; width:150px;max-height:150px;"/>
+				</div>
+				
+				<div class="media-body">
+					<div class="media-header">
+						<h3 style="float:left;margin:0;padding:0;">
+							{{server.servername}}
+						</h3>	
+						
+						<h4 style="float:right;margin:0;padding:0;">
+							{{server.domainname}} ({{server.address}}) @ Port: {{server.port}}
+						</h4>
+						
+						<div style="clear:both;"></div>
+						<p>
+							<i>{{server.motd}}</i>
+						</p>
+					</div>
+					<div ng-show="server.isOnline && server.query">
+						<div class="row">
+							<div class="col-md-4">
+								<b>Server software: </b> {{server.query.info.Software}} {{server.query.info.Version}}
+							</div>
+							<div class="col-md-4">
+								<b>Level name: </b> {{server.query.info.Map}}
+							</div>
+							<div class="col-md-4">
+								<b>Players: </b> {{server.query.info.Players}} / {{server.query.info.MaxPlayers}}
+							</div>
+						</div>
+						
+						<div ng-show="server.query.players">
+							<b>Players online: </b> {{server.query.players | join:", "}}
+						</div>
+					</div>
+					
+					<div ng-show="server.modlist">
+					  <p>
+					    <b>Mods in use: </b>
+					    <i ng-repeat="mod in server.modlist">
+					      <a class="modlink" href="backend/getmod.php?mod={{mod}}&server={{server.servername}}" target="_blank">{{mod}}</a>
+					    </i>
+					  </p>
+					</div>
+					
+					<div ng-show="server.whitelisting">
+						<p>Whitelisting is in effect!</p>
+						<p><b>Allowed players: </b>{{server.whitelisting | join:", "}}</p>
+					</div>
+					
+					<p ng-show="server.overview" style="bottom:0;">
+						<a href="overview/" target="_blank">Open overview (rendered {{server.overview.rendertime}})</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</li>
+</ul>
+</div>
