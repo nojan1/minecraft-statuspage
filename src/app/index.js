@@ -17,7 +17,7 @@ angular.module('minecraftNew').filter('firstserverimage', function() {
 					if(input && input.length > 0){
 						return input[0];
 					}else{
-						return 'default.png';
+						return 'assets/images/default.png';
 					}
 		};
 	})
