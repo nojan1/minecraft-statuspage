@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('minecraftNew', ['ngAnimate', 'ngCookies', 'ngSanitize', 'restangular', 'ui.router', 'ui.bootstrap'])
+angular.module('minecraftNew', ['ngAnimate', 'ngCookies', 'ngSanitize', 'restangular', 'ui.router', 'ui.bootstrap', 'cgNotify'])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {
