@@ -8,8 +8,8 @@ angular.module('minecraftNew')
 			$scope.servers = servers;
 		});
 	
-		Servers.events(function(message){
-			notify({message: message, duration: 0});
-			console.log(message);
+		Servers.events(function(messageText){
+			notify({message: messageText, duration: 0});
+			console.log(messageText);
 		});
   });
