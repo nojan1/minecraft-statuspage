@@ -10,7 +10,7 @@ angular.module('minecraftNew').factory('Servers', function($http, $q, $interval)
 			data.sort(function(a, b){
   				return a.isOnline === b.isOnline ? 0 : 1;
 			});
-			data.reverse();
+			//data.reverse();
 			
 			defer.resolve(data);
 		});
@@ -36,10 +36,15 @@ angular.module('minecraftNew').factory('Servers', function($http, $q, $interval)
 						var serverIndex = findServer(serverCache, server);
 						
 						if(serverIndex === -1){
-							callback('Server ' + server.servername + ' was added');
+							callback('Server ' + server.servername + ' was added', servers);
 							return;
 						}
 						
+						if(server.overview && serverCache[serverIndex].overview){
+							if(server.overview.rendertime != serverCache[serverIndex].overview){
+								//callback('New overview render was created at ' + server.overview.rendertime + ' for server ' + server.servername, servers); 
+							}
+						}
 						
 						if(server.query && server.query.players){
 							var newPlayers = [];
@@ -54,7 +59,7 @@ angular.module('minecraftNew').factory('Servers', function($http, $q, $interval)
 							});
 
 							if(newPlayers.length > 0){
-								callback(newPlayers.join(',') + ' joined ' + server.servername);	
+								callback(newPlayers.join(',') + ' joined ' + server.servername, servers);	
 							}
 						}
 					});
