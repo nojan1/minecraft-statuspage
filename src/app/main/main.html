@@ -10,7 +10,14 @@
 
 <ul id="serverlist">
 	<li ng-repeat="server in servers">
-		<div class="serverrow well {{server.isOnline | isonlinestyle}}">
+		<div class="serverrow well well-sm serveroffline" ng-hide="server.isOnline">
+			<h3>{{server.servername}} - offline</h3>
+			<p>
+				<i>{{server.motd}}</i>
+			</p>
+		</div>
+		
+		<div class="serverrow well" ng-show="server.isOnline">
 			<div class="media">
 				<div class="pull-left media-object thumbnail" style="width:160px; height:160px;line-height:150px;position:relative;padding:10px;margin-right:10px;"> 
 					<img ng-src="{{server.imagelist | firstserverimage}}" style="position:absolute; top:0;right:0;left:0;bottom:0;margin:auto; width:150px;max-height:150px;"/>
