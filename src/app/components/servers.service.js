@@ -1,5 +1,7 @@
 'use strict';
 
+var checkTimeout = 10000;
+
 angular.module('minecraftNew').factory('Servers', function($http, $q, $interval){
 	var serverCache = false;
 
@@ -41,7 +43,7 @@ angular.module('minecraftNew').factory('Servers', function($http, $q, $interval)
 						}
 						
 						if(server.overview && serverCache[serverIndex].overview){
-							if(server.overview.rendertime != serverCache[serverIndex].overview){
+							if(server.overview.rendertime !== serverCache[serverIndex].overview){
 								//callback('New overview render was created at ' + server.overview.rendertime + ' for server ' + server.servername, servers); 
 							}
 						}
@@ -67,7 +69,7 @@ angular.module('minecraftNew').factory('Servers', function($http, $q, $interval)
 				
 				serverCache = servers;
 			});
-		}, 10000);
+		}, checkTimeout);
 	};
 	
 	return {
